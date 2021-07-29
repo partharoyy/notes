@@ -1,15 +1,14 @@
-export default function debounce(a, b, c) {
-    var d, e;
+export default function debounce(fn, delay) {
+    let timer
     return function () {
-        function h() {
-            d = null;
-            c || (e = a.apply(f, g));
-        }
-        var f = this, g = arguments;
-        return (clearTimeout(d), d = setTimeout(h, b), c && !d && (e = a.apply(f, g)), e)
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            fn.apply(null, arguments)
+        }, delay)
     }
 }
 
 export function removeHTMLTags(str) {
     return str.replace(/<[^>]*>?/gm, '');
 };
+
